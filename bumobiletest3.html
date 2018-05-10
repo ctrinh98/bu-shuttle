@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>BU Shuttle</title>
+    <style>
+      #map {
+        height: 100%;
+       }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var liveBus;
+      var result;
+      function livebus() {
+        liveBus = [];
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/livebus.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            if (myJson['totalResultsAvailable'] > 0) {
+              for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                result = [];
+                result.push(myJson['ResultSet']['Result'][i]['lat']);
+                result.push(myJson['ResultSet']['Result'][i]['lng']);
+                liveBus.push(result);
+              }
+            }
+            busPosition();
+            reloadBusPosition();
+          }
+        );
+      };
+      livebus();
+      setInterval(function() { livebus() }, 5000);
+      var map;
+      // setInterval(function() { test() }, 5000);
+      function initMap() {
+        var mapOptions = {
+          zoom: 14,
+          center: {lat: 42.343893, lng: -71.098402},
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        // console.log(liveBus);
+        // console.log(liveBus.length);
+      };
+      var buses = [];
+      function busPosition() {
+        // console.log(5);
+        for (var j = 0; j < liveBus.length; j++) {
+          // console.log(5);
+          var stop = liveBus[j];
+          // console.log(stop[0],stop[1]);
+          // var myLatLng = new google.maps.LatLng(stop[0],stop[1]);
+          // console.log(stop[0]);
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(stop[0],stop[1]),
+            map: map,
+          });
+          buses.push(marker);
+        };
+        // console.log(buses);
+      };
+      function reloadBusPosition() {
+        // Loop through markers and set map to null for each
+        for (var i = 0; i < buses.length; i++) {
+          buses[i].setMap(null);
+        }
+        // Reset the markers array
+        buses = [];
+        // Call set markers to re-add markers
+        busPosition();
+      }
+      // busPosition();
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4aoUYJDMxDfiMOOz7iqoeslQ4E9z9FHQ&callback=initMap">
+    </script>
+    hello
+  </body>
+</html>
