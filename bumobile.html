@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>BU Shuttle</title>
+    <style>
+      #map {
+        height: 100%;
+       }
+      html, body {
+        height: 95%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <!-- Favicon information -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#c2232c">
+    <link rel="shortcut icon" href="assets/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#d64049">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#d64049">
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var liveBus;
+      var shape;
+      var tor;
+      var result;
+      var stops;
+      var busId;
+
+      // Beginning of livebus function.
+      function livebus() {
+        liveBus = [];
+        busId = [];
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/livebus.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            if (myJson['totalResultsAvailable'] > 0) {
+              for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                result = [];
+                result.push(myJson['ResultSet']['Result'][i]['lat']);
+                result.push(myJson['ResultSet']['Result'][i]['lng']);
+                liveBus.push(result);
+                busId.push(myJson['ResultSet']['Result'][i]['id']);
+                document.getElementById("bus_id").innerHTML = busId[0];
+                document.getElementById("bus_id2").innerHTML = busId[1];
+              }
+            }
+            if (myJson['totalResultsAvailable'] < 4) {
+              if (myJson['totalResultsAvailable'] < 3) {
+                if (document.getElementById("title3") != null) {
+                  // var parent = document.getElementById("data3");
+                  // var child1 = document.getElementById("title3");
+                  // var child2 = document.getElementById("bus_id3");
+                  // var child3 = document.getElementById("stop3");
+                  // var child4 = document.getElementById("stopName3");
+                  // var child5 = document.getElementById("estimates3");
+                  // parent.removeChild(child1);
+                  // parent.removeChild(child2);
+                  // parent.removeChild(child3);
+                  // parent.removeChild(child4);
+                  // parent.removeChild(child5);
+                  var parent = document.getElementById("data");
+                  var child = document.getElementById("data3");
+                  parent.removeChild(child);
+                }
+              }
+              if (document.getElementById("title4") != null) {
+                // var parent = document.getElementById("data4");
+                // var child1 = document.getElementById("title4");
+                // var child2 = document.getElementById("bus_id4");
+                // var child3 = document.getElementById("stop4");
+                // var child4 = document.getElementById("stopName4");
+                // var child5 = document.getElementById("estimates4");
+                // parent.removeChild(child1);
+                // parent.removeChild(child2);
+                // parent.removeChild(child3);
+                // parent.removeChild(child4);
+                // parent.removeChild(child5);
+                var parent = document.getElementById("data");
+                var child = document.getElementById("data4");
+                parent.removeChild(child);
+              }
+            }
+            if (myJson['service'] == null) {
+              document.getElementById("service").innerHTML = 'null';
+            }
+            busPosition();
+            reloadBusPosition();
+          }
+        );
+      };
+      livebus();
+      setInterval(function() { livebus() }, 5000);
+
+      //
+      var stopName;
+      var stopName2;
+
+      function estimate() {
+        // liveBus = [];
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/livebus.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            if (myJson['totalResultsAvailable'] > 0) {
+              // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'].length);
+              if (myJson['ResultSet']['Result'][0]['arrival_estimates'] == undefined) {
+                document.getElementById("estimates").innerHTML = 'Loading...'
+              } else {
+                if (myJson['ResultSet']['Result'][0]['arrival_estimates'].length > 0) {
+                  document.getElementById("estimates").innerHTML = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at'];
+                  document.getElementById("stop").innerHTML = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
+                  stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
+                  // stopName2 = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
+                  // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at']);
+                }
+              }
+              if (myJson['ResultSet']['Result'][1]['arrival_estimates'] == undefined) {
+                document.getElementById("estimates2").innerHTML = 'Loading...'
+              } else {
+                if (myJson['ResultSet']['Result'][1]['arrival_estimates'].length > 0) {
+                  document.getElementById("estimates2").innerHTML = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['arrival_at'];
+                  document.getElementById("stop2").innerHTML = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
+                  // stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
+                  stopName2 = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
+                  // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at']);
+                }
+              }
+              // for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+              //   result = [];
+              //   result.push(myJson['ResultSet']['Result'][i]['lat']);
+              //   result.push(myJson['ResultSet']['Result'][i]['lng']);
+              //   liveBus.push(result);
+              // }
+            }
+          }
+        )
+      };
+      estimate();
+      setInterval(function() { estimate() }, 5000);
+
+      //
+      function liveStop() {
+        // liveBus = [];
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/stops.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            // console.log(myJson['totalResultsAvailable'])
+            if (myJson['totalResultsAvailable'] > 0) {
+              console.log('yep');
+              for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                // result = [];
+                console.log(i);
+                if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName) {
+                  document.getElementById("stopName").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
+                }
+                if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName2) {
+                  document.getElementById("stopName2").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
+                }
+                // result.push(myJson['ResultSet']['Result'][i]['lat']);
+                // result.push(myJson['ResultSet']['Result'][i]['lng']);
+                // liveBus.push(result);
+              }
+            }
+            // busPosition();
+            // reloadBusPosition();
+          }
+        );
+      };
+      liveStop();
+      setInterval(function() { liveStop() }, 5000);
+
+      // Beginning of shapes function.
+      function shapes() {
+        shape = [];
+        tor = -1;
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/shapes.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            if (myJson['ResultSet']['Result']['day_route']['active'] == true) {
+              tor = 0;
+              for (var i = 0; i < myJson['ResultSet']['Result']['day_route']['coords'].length; i++) {
+                stops = {};
+                stops["lat"] = parseFloat(myJson['ResultSet']['Result']['day_route']['coords'][i]['lat']);
+                stops["lng"] = parseFloat(myJson['ResultSet']['Result']['day_route']['coords'][i]['lng']);
+                shape.push(stops);
+                // console.log(stops)
+              }
+            } else if (myJson['ResultSet']['Result']['night_route']['active'] == true) {
+              tor = 1;
+              for (var i = 0; i < myJson['ResultSet']['Result']['night_route']['coords'].length; i++) {
+                stops = {};
+                stops["lat"] = parseFloat(myJson['ResultSet']['Result']['night_route']['coords'][i]['lat']);
+                stops["lng"] = parseFloat(myJson['ResultSet']['Result']['night_route']['coords'][i]['lng']);
+                shape.push(stops);
+                // console.log(stops)
+              }
+            } else if (myJson['ResultSet']['Result']['express_route']['active'] == true) {
+              tor = 2;
+              for (var i = 0; i < myJson['ResultSet']['Result']['express_route']['coords'].length; i++) {
+                stops = {};
+                stops["lat"] = parseFloat(myJson['ResultSet']['Result']['express_route']['coords'][i]['lat']);
+                stops["lng"] = parseFloat(myJson['ResultSet']['Result']['express_route']['coords'][i]['lng']);
+                shape.push(stops);
+                // console.log(stops)
+              }
+            } else {
+              tor = -1;
+            }
+            // console.log(tor);
+            // console.log(myJson['ResultSet']['Result']['day_route']['coords'].length);
+            // var test = myJson['ResultSet']['Result']['day_route'][0][0]['lat'];
+            // console.log(test)
+
+            // console.log(shape)
+//            if (myJson['totalResultsAvailable'] > 0) {
+//              console.log('ryep');
+//              for (var i = 0; i < myJson['totalResultsAvailable']; i++) {
+//                console.log('fyep');
+//                console.log(i)
+//                if (myJson['ResultSet']['Result'][i]['active'] == true) {
+//                  result = [];
+//                  console.log('yep');
+//                  stops.push(myJson['ResultSet']['Result'][i]['lat']);
+//                  stops.push(myJson['ResultSet']['Result'][i]['lng']);
+//                  shape.push(result);
+//                }
+//              }
+//            }
+            busPosition();
+            reloadBusPosition();
+          }
+        );
+      };
+      shapes();
+      // setInterval(function() { shapes() }, 5000);
+
+      var busShapes = [{lat: 42.352514,lng: -71.118344},{lat: 42.353600,lng: -71.118092},{lat: 42.353687,lng: -71.117968},{lat: 42.353683,lng: -71.117775}];
+
+      var busShape = [{lat: "42.352514",lng: "-71.118344"},{lat: "42.353600",lng: "-71.118092"},{lat: "42.353687",lng: "-71.117968"},{lat: "42.353683",lng: "-71.117775"},{lat: "42.353190",lng: "-71.116724"},{lat: "42.352641",lng: "-71.115673"},{lat: "42.352482",lng: "-71.115479"},{lat: "42.351745",lng: "-71.115656"},{lat: "42.351007",lng: "-71.115801"},{lat: "42.350774",lng: "-71.113768"},{lat: "42.350520",lng: "-71.111773"},{lat: "42.349834",lng: "-71.106006"},{lat: "42.348882",lng: "-71.098013"},{lat: "42.348764",lng: "-71.096972"},{lat: "42.348851",lng: "-71.092836"},{lat: "42.348545",lng: "-71.092772"},{lat: "42.347915",lng: "-71.092455"},{lat: "42.347808",lng: "-71.092359"},{lat: "42.347245",lng: "-71.092407"},{lat: "42.346948",lng: "-71.092380"},{lat: "42.346813",lng: "-71.092284"},{lat: "42.346757",lng: "-71.092166"},{lat: "42.346444",lng: "-71.091141"},{lat: "42.346301",lng: "-71.090884"},{lat: "42.346083",lng: "-71.090739"},{lat: "42.345865",lng: "-71.090669"},{lat: "42.345493",lng: "-71.090594"},{lat: "42.344831",lng: "-71.090744"},{lat: "42.344595",lng: "-71.090776"},{lat: "42.344359",lng: "-71.090744"},{lat: "42.344244",lng: "-71.090661"},{lat: "42.344109",lng: "-71.090444"},{lat: "42.343984",lng: "-71.089990"},{lat: "42.343831",lng: "-71.089124"},{lat: "42.343324",lng: "-71.085798"},{lat: "42.342773",lng: "-71.084913"},{lat: "42.342265",lng: "-71.084189"},{lat: "42.342150",lng: "-71.084124"},{lat: "42.341337",lng: "-71.082923"},{lat: "42.340572",lng: "-71.081802"},{lat: "42.340255",lng: "-71.081367"},{lat: "42.339801",lng: "-71.080916"},{lat: "42.339208",lng: "-71.080348"},{lat: "42.338391",lng: "-71.079409"},{lat: "42.337325",lng: "-71.078068"},{lat: "42.336448",lng: "-71.077027"},{lat: "42.333478",lng: "-71.073444"},{lat: "42.333569",lng: "-71.073304"},{lat: "42.333676",lng: "-71.073278"},{lat: "42.334406",lng: "-71.072205"},{lat: "42.334937",lng: "-71.071443"},{lat: "42.334985",lng: "-71.071432"},{lat: "42.335469",lng: "-71.070719"},{lat: "42.335933",lng: "-71.070080"},{lat: "42.336016",lng: "-71.070182"},{lat: "42.337495",lng: "-71.071958"},{lat: "42.338871",lng: "-71.073589"},{lat: "42.338013",lng: "-71.074844"},{lat: "42.336520",lng: "-71.076915"},{lat: "42.337892",lng: "-71.078572"},{lat: "42.338605",lng: "-71.079468"},{lat: "42.339367",lng: "-71.080353"},{lat: "42.340015",lng: "-71.080955"},{lat: "42.340564",lng: "-71.081574"},{lat: "42.340640",lng: "-71.081705"},{lat: "42.341825",lng: "-71.083459"},{lat: "42.342220",lng: "-71.084028"},{lat: "42.342265",lng: "-71.084167"},{lat: "42.342997",lng: "-71.085262"},{lat: "42.343332",lng: "-71.085787"},{lat: "42.345187",lng: "-71.086694"},{lat: "42.347975",lng: "-71.088083"},{lat: "42.349763",lng: "-71.088952"},{lat: "42.350849",lng: "-71.089489"},{lat: "42.350359",lng: "-71.091259"},{lat: "42.350115",lng: "-71.092214"},{lat: "42.349945",lng: "-71.092874"},{lat: "42.349878",lng: "-71.093308"},{lat: "42.349755",lng: "-71.093571"},{lat: "42.349204",lng: "-71.095459"},{lat: "42.349073",lng: "-71.096033"},{lat: "42.348982",lng: "-71.096522"},{lat: "42.349009",lng: "-71.097149"},{lat: "42.348997",lng: "-71.097358"},{lat: "42.349973",lng: "-71.105319"},{lat: "42.350472",lng: "-71.109428"},{lat: "42.350472",lng: "-71.109729"},{lat: "42.351543",lng: "-71.118548"},{lat: "42.352514",lng: "-71.118344"}];
+
+      for (var i = 0; i < busShape.length; i++) {
+        busShape[i]["lat"] = parseFloat(busShape[i]["lat"]);
+        busShape[i]["lng"] = parseFloat(busShape[i]["lng"]);
+      }
+
+      var map;
+      // setInterval(function() { test() }, 5000);
+      function initMap() {
+        var mapOptions = {
+          zoom: 15,
+          center: {lat: 42.343893, lng: -71.095402},
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        // console.log(liveBus);
+        // console.log(liveBus.length);
+        var busPath = new google.maps.Polyline({
+          path: busShape,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+        busPath.setMap(map);
+        var image = 'https://www.bu.edu/thebus/wp-content/themes/flexi-transportation/images/map/bus-stop.png';
+        // var image = 'bus_stop.png';
+        // var marker, i;
+        // for (i = 0; i < busShape.length; i++) {
+        //   marker = new google.maps.Marker({
+        //     position: new google.maps.LatLng(busShape[i][0],busShape[i][1]),
+        //     map: map,
+        //     icon: image
+        //   })
+        // }
+        var infowindow = new google.maps.InfoWindow({
+          content: busId[0]
+        });
+        // marker.addListener('click', function() {
+        //   infowindow.open(map, marker);
+        //   busId.splice(1);
+        // });
+      };
+      var buses = [];
+      function busPosition() {
+        // console.log(5);
+        for (var j = 0; j < liveBus.length; j++) {
+          // console.log(5);
+          var stop = liveBus[j];
+          // console.log(stop[0],stop[1]);
+          // var myLatLng = new google.maps.LatLng(stop[0],stop[1]);
+          // console.log(stop[0]);
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(stop[0],stop[1]),
+            map: map,
+          });
+          buses.push(marker);
+        };
+        // console.log(buses);
+      };
+      function reloadBusPosition() {
+        // Loop through markers and set map to null for each
+        for (var i = 0; i < buses.length; i++) {
+          buses[i].setMap(null);
+        }
+        // Reset the markers array
+        buses = [];
+        // Call set markers to re-add markers
+        busPosition();
+      }
+      // busPosition();
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4aoUYJDMxDfiMOOz7iqoeslQ4E9z9FHQ&callback=initMap">
+    </script>
+    
+    <style>
+    .estimates {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+    .estimates > div {
+      width: 75%;
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 0px, rgba(0, 0, 0, 0.16) 0px 12px 12px 0px;
+      max-width: 100%;
+      border-radius: 4px;
+      padding: 25px;
+    }
+    </style>
+
+    <div id="info" style="padding: 25px 50px 0px 50px;">
+      <h1 style="display:inline">Service: </h1>
+      <h1 id="service" style="color: blue; display:inline">service</h1>
+      <h1>Stop Estimates</h1>
+    </div>
+
+    <div id="data" class="estimates" style="padding: 10px 50px 75px 50px;">
+
+      <div id="data1">
+        <h2 id="title" style="display:inline">Bus #1: </h2>
+        <h2 id="bus_id" style="color:red;display:inline">id</h2>
+        <p id="stop">stop_id</p>
+        <p id="stopName">stop_name</p>
+        <p id="estimates">arrival_at</p>
+      </div>
+
+      <div id="data2">
+        <h2 id="title2" style="display:inline">Bus #2: </h2>
+        <h2 id="bus_id2" style="color:red;display:inline">id</h2>
+        <p id="stop2">stop_id</p>
+        <p id="stopName2">stop_name</p>
+        <p id="estimates2">arrival_at</p>
+      </div>
+
+      <div id="data3">
+        <h2 id="title3" style="display:inline">Bus #3: </h2>
+        <h2 id="bus_id3" style="color:red;display:inline">id</h2>
+        <p id="stop3">stop_id</p>
+        <p id="stopName3">stop_name</p>
+        <p id="estimates3">arrival_at</p>
+      </div>
+
+      <div id="data4">
+        <h2 id="title4" style="display:inline">Bus #4: </h2>
+        <h2 id="bus_id4" style="color:red;display:inline">id</h2>
+        <p id="stop4">stop_id</p>
+        <p id="stopName4">stop_name</p>
+        <p id="estimates4">arrival_at</p>
+      </div>
+    </div>
+  </body>
+</html>
