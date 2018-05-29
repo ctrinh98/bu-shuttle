@@ -23,6 +23,8 @@
     <meta name="msapplication-TileColor" content="#d64049">
     <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#d64049">
+    <script type="text/javascript" src="datetime.min.js"> </script>
+    <script type="text/javascript" src="moment.js"> </script>
   </head>
   <body>
     <div id="map"></div>
@@ -33,11 +35,13 @@
       var result;
       var stops;
       var busId;
+      var callName;
 
       // Beginning of livebus function.
       function livebus() {
         liveBus = [];
         busId = [];
+        callName = [];
         fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/livebus.json.php')
           .then(function(response) {
             return response.json();
@@ -50,12 +54,24 @@
                 result.push(myJson['ResultSet']['Result'][i]['lng']);
                 liveBus.push(result);
                 busId.push(myJson['ResultSet']['Result'][i]['id']);
+                callName.push(myJson['ResultSet']['Result'][i]['call_name']);
                 document.getElementById("bus_id").innerHTML = busId[0];
                 document.getElementById("bus_id2").innerHTML = busId[1];
+                document.getElementById("bus_id3").innerHTML = busId[2];
+                document.getElementById("call_name").innerHTML = callName[0];
+                document.getElementById("call_name2").innerHTML = callName[1];
+                document.getElementById("call_name3").innerHTML = callName[2];
               }
             }
             if (myJson['totalResultsAvailable'] < 4) {
               if (myJson['totalResultsAvailable'] < 3) {
+                if (myJson['totalResultsAvailable'] < 2) {
+                  if (document.getElementById("title2") != null) {
+                    var parent = document.getElementById("data");
+                    var child = document.getElementById("data2");
+                    parent.removeChild(child);
+                  }
+                }
                 if (document.getElementById("title3") != null) {
                   // var parent = document.getElementById("data3");
                   // var child1 = document.getElementById("title3");
@@ -92,6 +108,9 @@
             }
             if (myJson['service'] == null) {
               document.getElementById("service").innerHTML = 'null';
+            } else {
+              document.getElementById("service").innerHTML = myJson['service'];
+              document.getElementById("service_id").innerHTML = myJson['service_id'];
             }
             busPosition();
             reloadBusPosition();
@@ -118,7 +137,7 @@
                 document.getElementById("estimates").innerHTML = 'Loading...'
               } else {
                 if (myJson['ResultSet']['Result'][0]['arrival_estimates'].length > 0) {
-                  document.getElementById("estimates").innerHTML = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at'];
+                  document.getElementById("estimates1").innerHTML = moment(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
                   document.getElementById("stop").innerHTML = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
                   stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
                   // stopName2 = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
@@ -129,10 +148,22 @@
                 document.getElementById("estimates2").innerHTML = 'Loading...'
               } else {
                 if (myJson['ResultSet']['Result'][1]['arrival_estimates'].length > 0) {
-                  document.getElementById("estimates2").innerHTML = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['arrival_at'];
+                  // moment("2018-05-29T14:08:17-04:00","YYYY-MM-DDTHH:mm:ss-Z").fromNow()
+                  document.getElementById("estimates2").innerHTML = moment(myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
                   document.getElementById("stop2").innerHTML = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
                   // stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
                   stopName2 = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
+                  // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at']);
+                }
+              }
+              if (myJson['ResultSet']['Result'][2]['arrival_estimates'] == undefined) {
+                document.getElementById("estimates3").innerHTML = 'Loading...'
+              } else {
+                if (myJson['ResultSet']['Result'][2]['arrival_estimates'].length > 0) {
+                  document.getElementById("estimates3").innerHTML = moment(myJson['ResultSet']['Result'][2]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  document.getElementById("stop3").innerHTML = myJson['ResultSet']['Result'][2]['arrival_estimates'][0]['stop_id'];
+                  // stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
+                  stopName3 = myJson['ResultSet']['Result'][2]['arrival_estimates'][0]['stop_id'];
                   // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at']);
                 }
               }
@@ -159,15 +190,20 @@
           .then(function(myJson) {
             // console.log(myJson['totalResultsAvailable'])
             if (myJson['totalResultsAvailable'] > 0) {
-              console.log('yep');
+              // console.log('yep');
               for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
                 // result = [];
-                console.log(i);
+                // console.log(i);
                 if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName) {
                   document.getElementById("stopName").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
                 }
                 if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName2) {
                   document.getElementById("stopName2").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
+                  // console.log('yayy')
+                }
+                if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName3) {
+                  document.getElementById("stopName3").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
+                  // console.log('yayy')
                 }
                 // result.push(myJson['ResultSet']['Result'][i]['lat']);
                 // result.push(myJson['ResultSet']['Result'][i]['lng']);
@@ -326,7 +362,7 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4aoUYJDMxDfiMOOz7iqoeslQ4E9z9FHQ&callback=initMap">
     </script>
-    
+
     <style>
     .estimates {
       display: grid;
@@ -344,14 +380,19 @@
     <div id="info" style="padding: 25px 50px 0px 50px;">
       <h1 style="display:inline">Service: </h1>
       <h1 id="service" style="color: blue; display:inline">service</h1>
-      <h1>Stop Estimates</h1>
+      <h1 style="display:inline"> ~ </h1>
+      <h1 id="service_id" style="color: green; display:inline">service_id</h1>
+      <!-- <h1 style="display:inline">) </h1> -->
+      <!-- <h1>Stop Estimates</h1> -->
     </div>
 
-    <div id="data" class="estimates" style="padding: 10px 50px 75px 50px;">
+    <div id="data" class="estimates" style="padding: 25px 50px 25px 50px;">
 
       <div id="data1">
         <h2 id="title" style="display:inline">Bus #1: </h2>
         <h2 id="bus_id" style="color:red;display:inline">id</h2>
+        <h2 style="display:inline"> ~ </h2>
+        <h2 id="call_name" style="color:green;display:inline">call_name</h2>
         <p id="stop">stop_id</p>
         <p id="stopName">stop_name</p>
         <p id="estimates">arrival_at</p>
@@ -360,6 +401,8 @@
       <div id="data2">
         <h2 id="title2" style="display:inline">Bus #2: </h2>
         <h2 id="bus_id2" style="color:red;display:inline">id</h2>
+        <h2 style="display:inline"> ~ </h2>
+        <h2 id="call_name2" style="color:green;display:inline">call_name</h2>
         <p id="stop2">stop_id</p>
         <p id="stopName2">stop_name</p>
         <p id="estimates2">arrival_at</p>
@@ -368,6 +411,8 @@
       <div id="data3">
         <h2 id="title3" style="display:inline">Bus #3: </h2>
         <h2 id="bus_id3" style="color:red;display:inline">id</h2>
+        <h2 style="display:inline"> ~ </h2>
+        <h2 id="call_name3" style="color:green;display:inline">call_name</h2>
         <p id="stop3">stop_id</p>
         <p id="stopName3">stop_name</p>
         <p id="estimates3">arrival_at</p>
@@ -376,10 +421,38 @@
       <div id="data4">
         <h2 id="title4" style="display:inline">Bus #4: </h2>
         <h2 id="bus_id4" style="color:red;display:inline">id</h2>
+        <h2 style="display:inline"> ~ </h2>
+        <h2 id="call_name4" style="color:green;display:inline">call_name</h2>
         <p id="stop4">stop_id</p>
         <p id="stopName4">stop_name</p>
         <p id="estimates4">arrival_at</p>
       </div>
+    </div>
+
+    <div id="info2" style="padding: 25px 50px 0px 50px;">
+      <h1>Stop Estimates</h1>
+      <h2>Outbound:</h2>
+    </div>
+
+    <div id="out_places" class="estimates" style="padding: 25px 50px 25px 50px;">
+
+      <div id="out_places1">
+
+      </div>
+
+    </div>
+
+    <div id="info3" style="padding: 25px 50px 0px 50px;">
+      <!-- <h1>Stop Estimates</h1> -->
+      <h2>Inbound:</h2>
+    </div>
+
+    <div id="in_places" class="estimates" style="padding: 25px 50px 75px 50px;">
+
+      <div id="in_places1">
+
+      </div>
+
     </div>
   </body>
 </html>
