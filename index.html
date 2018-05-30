@@ -134,10 +134,12 @@
             if (myJson['totalResultsAvailable'] > 0) {
               // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'].length);
               if (myJson['ResultSet']['Result'][0]['arrival_estimates'] == undefined) {
-                document.getElementById("estimates").innerHTML = 'Loading...'
+                // document.getElementById("estimates").innerHTML = 'Loading...'
+                document.getElementById("estimates").innerHTML = "";
+                document.getElementById("estimates").className = "loader";
               } else {
                 if (myJson['ResultSet']['Result'][0]['arrival_estimates'].length > 0) {
-                  document.getElementById("estimates1").innerHTML = moment(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  document.getElementById("estimates").innerHTML = moment(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
                   document.getElementById("stop").innerHTML = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
                   stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
                   // stopName2 = myJson['ResultSet']['Result'][1]['arrival_estimates'][0]['stop_id'];
@@ -145,7 +147,10 @@
                 }
               }
               if (myJson['ResultSet']['Result'][1]['arrival_estimates'] == undefined) {
-                document.getElementById("estimates2").innerHTML = 'Loading...'
+                // document.getElementById("estimates2").innerHTML = 'Loading...'
+                document.getElementById("estimates2").innerHTML = "";
+                document.getElementById("estimates2").className = "loader";
+                document.getElementById("stop2").innerHTML = "NO_SERVICE"
               } else {
                 if (myJson['ResultSet']['Result'][1]['arrival_estimates'].length > 0) {
                   // moment("2018-05-29T14:08:17-04:00","YYYY-MM-DDTHH:mm:ss-Z").fromNow()
@@ -157,13 +162,28 @@
                 }
               }
               if (myJson['ResultSet']['Result'][2]['arrival_estimates'] == undefined) {
-                document.getElementById("estimates3").innerHTML = 'Loading...'
+                // document.getElementById("estimates3").innerHTML = 'Loading...'
+                document.getElementById("estimates3").innerHTML = "";
+                document.getElementById("estimates3").className = "loader";
               } else {
                 if (myJson['ResultSet']['Result'][2]['arrival_estimates'].length > 0) {
                   document.getElementById("estimates3").innerHTML = moment(myJson['ResultSet']['Result'][2]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
                   document.getElementById("stop3").innerHTML = myJson['ResultSet']['Result'][2]['arrival_estimates'][0]['stop_id'];
                   // stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
                   stopName3 = myJson['ResultSet']['Result'][2]['arrival_estimates'][0]['stop_id'];
+                  // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at']);
+                }
+              }
+              if (myJson['ResultSet']['Result'][3]['arrival_estimates'] == undefined) {
+                // document.getElementById("estimates4").innerHTML = 'Loading...'
+                document.getElementById("estimates4").innerHTML = "";
+                document.getElementById("estimates4").className = "loader";
+              } else {
+                if (myJson['ResultSet']['Result'][3]['arrival_estimates'].length > 0) {
+                  document.getElementById("estimates4").innerHTML = moment(myJson['ResultSet']['Result'][3]['arrival_estimates'][0]['arrival_at'],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  document.getElementById("stop4").innerHTML = myJson['ResultSet']['Result'][3]['arrival_estimates'][0]['stop_id'];
+                  // stopName = myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['stop_id'];
+                  stopName4 = myJson['ResultSet']['Result'][3]['arrival_estimates'][0]['stop_id'];
                   // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'][0]['arrival_at']);
                 }
               }
@@ -203,6 +223,10 @@
                 }
                 if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName3) {
                   document.getElementById("stopName3").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
+                  // console.log('yayy')
+                }
+                if (myJson['ResultSet']['Result'][i]['transloc_stop_id'] == stopName4) {
+                  document.getElementById("stopName4").innerHTML = myJson['ResultSet']['Result'][i]['stop_name'];
                   // console.log('yayy')
                 }
                 // result.push(myJson['ResultSet']['Result'][i]['lat']);
@@ -367,6 +391,7 @@
     .estimates {
       display: grid;
       grid-template-columns: auto auto;
+      row-gap: 50px;
     }
     .estimates > div {
       width: 75%;
@@ -374,6 +399,37 @@
       max-width: 100%;
       border-radius: 4px;
       padding: 25px;
+      background-color: #fcfcfc;
+    }
+    #left {
+      width: 800px;
+      float: left;
+    }
+    #right {
+      margin-left: 400px;
+    }
+    .clear {
+      clear: both;
+    }
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid #c2232c;
+      width: 20px;
+      height: 20px;
+      -webkit-animation: spin 1s linear infinite; /* Safari */
+      animation: spin 1s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     </style>
 
@@ -431,28 +487,45 @@
 
     <div id="info2" style="padding: 25px 50px 0px 50px;">
       <h1>Stop Estimates</h1>
-      <h2>Outbound:</h2>
     </div>
 
-    <div id="out_places" class="estimates" style="padding: 25px 50px 25px 50px;">
+    <div id="left">
 
-      <div id="out_places1">
+      <h2 id="out_info" style="padding: 25px 50px 25px 50px;">Outbound:</h2>
+
+      <div id="out_places" class="estimates" style="padding: 25px 50px 25px 50px;">
+
+        <div id="out_places1">
+
+        </div>
 
       </div>
 
     </div>
 
-    <div id="info3" style="padding: 25px 50px 0px 50px;">
+    <!-- <div id="info3" style="padding: 25px 50px 0px 50px;"> -->
       <!-- <h1>Stop Estimates</h1> -->
-      <h2>Inbound:</h2>
-    </div>
 
-    <div id="in_places" class="estimates" style="padding: 25px 50px 75px 50px;">
+    <!-- </div> -->
 
-      <div id="in_places1">
+    <div id="right">
+
+      <h2 id="in_info">Inbound:</h2>
+
+      <div id="in_places" class="estimates" style="padding: 25px 50px 75px 50px;">
+
+        <div id="in_places1">
+
+        </div>
 
       </div>
 
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="color" style="background-color: #c2232c">
+      <p style="color: white; text-align: right; padding-top: 5px; padding-bottom: 5px; padding-right: 25px;">by Christopher Trinh @ ctrinh.com</p>
     </div>
   </body>
 </html>
