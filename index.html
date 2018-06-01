@@ -175,6 +175,7 @@
                 // document.getElementById("estimates").innerHTML = 'Loading...'
                 document.getElementById("estimates").innerHTML = "";
                 document.getElementById("estimates").className = "loader";
+                document.getElementById("stop").innerHTML = "NO_SERVICE"
                 numRunning += 1;
               } else {
                 if (myJson['ResultSet']['Result'][0]['arrival_estimates'].length > 0) {
@@ -210,6 +211,7 @@
                   // document.getElementById("estimates3").innerHTML = 'Loading...'
                   document.getElementById("estimates3").innerHTML = "";
                   document.getElementById("estimates3").className = "loader";
+                  document.getElementById("stop3").innerHTML = "NO_SERVICE"
                   numRunning += 1;
                 } else {
                   if (myJson['ResultSet']['Result'][2]['arrival_estimates'].length > 0) {
@@ -227,6 +229,7 @@
                   // document.getElementById("estimates4").innerHTML = 'Loading...'
                   document.getElementById("estimates4").innerHTML = "";
                   document.getElementById("estimates4").className = "loader";
+                  document.getElementById("stop4").innerHTML = "NO_SERVICE"
                   numRunning += 1;
                 } else {
                   if (myJson['ResultSet']['Result'][3]['arrival_estimates'].length > 0) {
@@ -244,6 +247,7 @@
                   // document.getElementById("estimates4").innerHTML = 'Loading...'
                   document.getElementById("estimates5").innerHTML = "";
                   document.getElementById("estimates5").className = "loader";
+                  document.getElementById("stop5").innerHTML = "NO_SERVICE"
                   numRunning += 1;
                 } else {
                   if (myJson['ResultSet']['Result'][4]['arrival_estimates'].length > 0) {
@@ -485,6 +489,25 @@
         padding: 25px;
         background-color: #fcfcfc;
       }
+      .estimatesp {
+        display: grid;
+        grid-template-columns: auto;
+        row-gap: 50px;
+      }
+      .estimatesp > div {
+        width: 75%;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 2px 0px, rgba(0, 0, 0, 0.16) 0px 12px 12px 0px;
+        max-width: 100%;
+        border-radius: 4px;
+        padding: 25px 25px 10px 25px;
+        background-color: #fcfcfc;
+      }
+      .estimatesp > div > h3 {
+        font-size: 16px;
+        font-weight: normal;
+        margin-top: 8px;
+        margin-bottom: 30px;
+      }
       #left {
         width: 800px;
         float: left;
@@ -631,36 +654,104 @@
 
     <div class="section group">
 
-      <!-- <div id="left"> -->
+      <!-- <div id="right"> -->
       <div class="col span_1_of_2">
 
-        <h2 id="out_info" style="padding-left: 50px;">Outbound:</h2>
+        <h2 id="in_info" style="padding-left: 50px;">Inbound to Medical Campus:</h2>
 
-        <div id="out_places" class="estimates" style="padding: 25px 50px 25px 50px;">
+        <div id="in_places" class="estimatesp" style="padding: 25px 50px 25px 50px;">
 
-          <div id="out_places1">
+          <!-- <div id="in_places1"> -->
 
+          <div id="idata1">
+            <h2 style="display:inline">M1: </h2>
+            <h2 style="display:inline">Student Village 2</h2>
+            <h3><i>33 Harry Agganis Way</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
           </div>
+
+          <div id="idata2">
+            <h2 style="display:inline">M2: </h2>
+            <h2 style="display:inline">Amory St.</h2>
+            <h3><i>Comm. Ave. & Amory St.</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
+          </div>
+
+          <div id="idata3">
+            <h2 style="display:inline">M3: </h2>
+            <h2 style="display:inline">St. Mary's St.</h2>
+            <h3><i>Comm. Ave. & St. Mary's St.</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
+          </div>
+
+          <div id="idata4">
+            <h2 style="display:inline">M4: </h2>
+            <h2 style="display:inline">Blandford St.</h2>
+            <h3><i>Comm. Ave. & Blandford St.</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
+          </div>
+
+          <div id="idata5">
+            <h2 style="display:inline">M5: </h2>
+            <h2 style="display:inline">Hotel Commonwealth</h2>
+            <h3><i>500 Commonwealth Ave.</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
+          </div>
+
+          <div id="idata6">
+            <h2 style="display:inline">M6: </h2>
+            <h2 style="display:inline">Huntington Ave.</h2>
+            <h3><i>Mass. Ave. & Huntington Ave.</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
+          </div>
+
+          <div id="idata7">
+            <h2 style="display:inline">M7: </h2>
+            <h2 style="display:inline">710 Albany St.</h2>
+            <h3><i>710 Albany Street</i></h3>
+            <p>first bus estimate</p>
+            <p>second bus estimate</p>
+            <p>third bus estimate</p>
+            <p>fourth bus estimate</p>
+          </div>
+
+          <!-- </div> -->
 
         </div>
 
       </div>
 
-    <!-- <div id="info3" style="padding: 25px 50px 0px 50px;"> -->
-      <!-- <h1>Stop Estimates</h1> -->
+      <!-- <div id="info3" style="padding: 25px 50px 0px 50px;"> -->
+        <!-- <h1>Stop Estimates</h1> -->
 
-    <!-- </div> -->
+      <!-- </div> -->
 
-
-
-      <!-- <div id="right"> -->
+      <!-- <div id="left"> -->
       <div class="col span_1_of_2">
 
-        <h2 id="in_info">Inbound:</h2>
+        <h2 id="out_info">Outbound to Charles River Campus:</h2>
 
-        <div id="in_places" class="estimates" style="padding: 25px 50px 25px 0px;">
+        <div id="out_places" class="estimates" style="padding: 25px 50px 25px 0px;">
 
-          <div id="in_places1">
+          <div id="out_places1">
 
           </div>
 
