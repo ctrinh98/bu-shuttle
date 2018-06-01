@@ -159,6 +159,8 @@
       var stopName3;
       var stopName4;
       var stopName5;
+      var numRunning;
+      // var numBuses;
 
       function estimate() {
         // liveBus = [];
@@ -167,8 +169,8 @@
             return response.json();
           })
           .then(function(myJson) {
-            var numRunning = 0;
-            var numBuses = myJson['totalResultsAvailable'];
+            numRunning = 0;
+            numBuses = myJson['totalResultsAvailable'];
             if (myJson['totalResultsAvailable'] > 0) {
               // console.log(myJson['ResultSet']['Result'][0]['arrival_estimates'].length);
               if (myJson['ResultSet']['Result'][0]['arrival_estimates'] == undefined) {
@@ -329,6 +331,83 @@
       };
       liveStop();
       setInterval(function() { liveStop() }, 5000);
+
+      var m1s;
+      var lastEst;
+      var m1e;
+
+      function proximity() {
+        // liveBus = [];
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/livebus.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            // console.log('oh');
+            if (myJson['totalResultsAvailable'] > 0) {
+              // console.log('yes');
+              if (numBuses > 0) {
+                // M1 4160714
+                // console.log(myJson['ResultSet']['Result'][17]);
+                // console.log('yep');
+                m1s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160714') {
+                        m1s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m1s = m1s.sort();
+                if (m1s.length > 0) {
+                  document.getElementById("m1s1").innerHTML = moment(m1s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m1s.length > 1) {
+                    document.getElementById("m1s2").innerHTML = moment(m1s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m1s.length > 2) {
+                      document.getElementById("m1s3").innerHTML = moment(m1s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m1s.length > 3) {
+                        document.getElementById("m1s4").innerHTML = moment(m1s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        );
+        fetch('http://www-devl.bu.edu/nisdev/php5/bu-mobile-backend-demo/bu-mobile-backend/rpc/bus/stops.json.php')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            // M1 4160714
+            if (m1s != undefined) {
+              lastEst = moment(m1s[m1s.length-1],"YYYY-MM-DDTHH:mm:ss-Z").format("hh:mm A");
+              m1e = [];
+              // for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                // console.log(myJson['ResultSet']['Result'][i]);
+                // if (myJson['ResultSet']['Result'][i]['times'] != undefined) {
+                  // console.log('w');
+                  // console.log(myJson['ResultSet']['Result'][0]['times']);
+                  for (var j = 0; j < myJson['ResultSet']['Result'][0]['times'].length; j++) {
+                    // console.log('n');
+                    if (lastEst < myJson['ResultSet']['Result'][0]['times'][j] && myJson['ResultSet']['Result'][0]['times'][j] < "6:00 AM") {
+                      // console.log(myJson['ResultSet']['Result'][0]['times'][j]);
+                      // console.log(lastEst);
+                      // console.log('yes');
+                      m1e.push(myJson['ResultSet']['Result'][0]['times'][j]);
+                    }
+                  }
+              //   }
+              // }
+            }
+          }
+        );
+      };
+      proximity();
+      setInterval(function() { proximity() }, 5000);
 
       // Beginning of shapes function.
       function shapes() {
@@ -667,10 +746,10 @@
             <h2 style="display:inline">M1: </h2>
             <h2 style="display:inline">Student Village 2</h2>
             <h3><i>33 Harry Agganis Way</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m1s1">first bus estimate</p>
+            <p id="m1s2">second bus estimate</p>
+            <p id="m1s3">third bus estimate</p>
+            <p id="m1s4">fourth bus estimate</p>
           </div>
 
           <div id="idata2">
