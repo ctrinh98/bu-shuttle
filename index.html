@@ -91,7 +91,7 @@
                       // var child = document.getElementById("data2");
                       // parent.removeChild(child);
                       $("#data2").hide();
-                      $("#data").show();
+                      // $("#data").show();
                     }
                   }
                   if (document.getElementById("title3") != null) {
@@ -111,7 +111,7 @@
                     // var child = document.getElementById("data3");
                     // parent.removeChild(child);
                     $("#data3").hide();
-                    $("#data2").show();
+                    // $("#data2").show();
                   }
                 }
                 if (document.getElementById("title4") != null) {
@@ -131,12 +131,12 @@
                   // var child = document.getElementById("data4");
                   // parent.removeChild(child);
                   $("#data4").hide();
-                  $("#data3").show();
+                  // $("#data3").show();
                 }
               }
               if (document.getElementById("title5") != null) {
                 $("#data5").hide();
-                $("#data4").show();
+                // $("#data4").show();
               }
             }
             if (myJson['service'] == null) {
@@ -264,6 +264,34 @@
               }
               document.getElementById("num_running").innerHTML = numBuses - numRunning;
               document.getElementById("num_buses").innerHTML = numBuses;
+              if (numBuses - numRunning == 1) {
+                document.getElementById("service_strength").innerHTML = "slow ";
+              } else if (numBuses - numRunning > 1) {
+                document.getElementById("service_strength").innerHTML = "normal ";
+              } else if (numBuses - numRunning > 3) {
+                document.getElementById("service_strength").innerHTML = "fast ";
+              };
+              if (numBuses - numRunning == 1) {
+                $(".b1e").show();
+                $(".b2e").hide();
+                $(".b3e").hide();
+                $(".b4e").hide();
+              } else if (numBuses - numRunning == 2) {
+                $(".b1e").show();
+                $(".b2e").show();
+                $(".b3e").hide();
+                $(".b4e").hide();
+              } else if (numBuses - numRunning == 3) {
+                $(".b1e").show();
+                $(".b2e").show();
+                $(".b3e").show();
+                $(".b4e").hide();
+              } else if (numBuses - numRunning > 3) {
+                $(".b1e").show();
+                $(".b2e").show();
+                $(".b3e").show();
+                $(".b4e").show();
+              };
               // for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
               //   result = [];
               //   result.push(myJson['ResultSet']['Result'][i]['lat']);
@@ -323,6 +351,11 @@
                 // result.push(myJson['ResultSet']['Result'][i]['lng']);
                 // liveBus.push(result);
               }
+              if (myJson['ResultSet']['Result'][14]['transloc_stop_id'] == null) {
+                $("#odata8").hide();
+              } else {
+                $("#odata8").show();
+              }
             }
             // busPosition();
             // reloadBusPosition();
@@ -335,6 +368,13 @@
       var m1s;
       var lastEst;
       var m1e;
+
+      var m2s;
+      var m3s;
+      var m4s;
+      var m5s;
+      var m6s;
+      var m7s;
 
       function proximity() {
         // liveBus = [];
@@ -373,6 +413,319 @@
                     }
                   }
                 }
+                // M2 4114006
+                m2s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4114006') {
+                        m2s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m2s = m2s.sort();
+                if (m2s.length > 0) {
+                  document.getElementById("m2s1").innerHTML = moment(m2s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m2s.length > 1) {
+                    document.getElementById("m2s2").innerHTML = moment(m2s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m2s.length > 2) {
+                      document.getElementById("m2s3").innerHTML = moment(m2s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m2s.length > 3) {
+                        document.getElementById("m2s4").innerHTML = moment(m2s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // M3 4149154
+                m3s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4149154') {
+                        m3s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m3s = m3s.sort();
+                if (m3s.length > 0) {
+                  document.getElementById("m3s1").innerHTML = moment(m3s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m3s.length > 1) {
+                    document.getElementById("m3s2").innerHTML = moment(m3s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m3s.length > 2) {
+                      document.getElementById("m3s3").innerHTML = moment(m3s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m3s.length > 3) {
+                        document.getElementById("m3s4").innerHTML = moment(m3s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // M4 4068466
+                m4s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4068466') {
+                        m4s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m4s = m4s.sort();
+                if (m4s.length > 0) {
+                  document.getElementById("m4s1").innerHTML = moment(m4s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m4s.length > 1) {
+                    document.getElementById("m4s2").innerHTML = moment(m4s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m4s.length > 2) {
+                      document.getElementById("m4s3").innerHTML = moment(m4s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m4s.length > 3) {
+                        document.getElementById("m4s4").innerHTML = moment(m4s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // M5 4068470
+                m5s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4068470') {
+                        m5s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m5s = m5s.sort();
+                if (m5s.length > 0) {
+                  document.getElementById("m5s1").innerHTML = moment(m5s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m5s.length > 1) {
+                    document.getElementById("m5s2").innerHTML = moment(m5s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m5s.length > 2) {
+                      document.getElementById("m5s3").innerHTML = moment(m5s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m5s.length > 3) {
+                        document.getElementById("m5s4").innerHTML = moment(m5s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // M6 4110206
+                m6s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4110206') {
+                        m6s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m6s = m6s.sort();
+                if (m6s.length > 0) {
+                  document.getElementById("m6s1").innerHTML = moment(m6s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m6s.length > 1) {
+                    document.getElementById("m6s2").innerHTML = moment(m6s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m6s.length > 2) {
+                      document.getElementById("m6s3").innerHTML = moment(m6s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m6s.length > 3) {
+                        document.getElementById("m6s4").innerHTML = moment(m6s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // M7 4068482
+                m7s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4068482') {
+                        m7s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                m7s = m7s.sort();
+                if (m7s.length > 0) {
+                  document.getElementById("m7s1").innerHTML = moment(m7s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (m7s.length > 1) {
+                    document.getElementById("m7s2").innerHTML = moment(m7s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (m7s.length > 2) {
+                      document.getElementById("m7s3").innerHTML = moment(m7s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (m7s.length > 3) {
+                        document.getElementById("m7s4").innerHTML = moment(m7s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C1 4068482
+                c1s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4068482') {
+                        c1s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c1s = c1s.sort();
+                if (c1s.length > 0) {
+                  document.getElementById("c1s1").innerHTML = moment(c1s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c1s.length > 1) {
+                    document.getElementById("c1s2").innerHTML = moment(c1s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c1s.length > 2) {
+                      document.getElementById("c1s3").innerHTML = moment(c1s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c1s.length > 3) {
+                        document.getElementById("c1s4").innerHTML = moment(c1s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C2 4160718
+                c2s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160718') {
+                        c2s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c2s = c2s.sort();
+                if (c2s.length > 0) {
+                  document.getElementById("c2s1").innerHTML = moment(c2s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c2s.length > 1) {
+                    document.getElementById("c2s2").innerHTML = moment(c2s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c2s.length > 2) {
+                      document.getElementById("c2s3").innerHTML = moment(c2s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c2s.length > 3) {
+                        document.getElementById("c2s4").innerHTML = moment(c2s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C3 4160722
+                c3s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160722') {
+                        c3s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c3s = c3s.sort();
+                if (c3s.length > 0) {
+                  document.getElementById("c3s1").innerHTML = moment(c3s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c3s.length > 1) {
+                    document.getElementById("c3s2").innerHTML = moment(c3s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c3s.length > 2) {
+                      document.getElementById("c3s3").innerHTML = moment(c3s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c3s.length > 3) {
+                        document.getElementById("c3s4").innerHTML = moment(c3s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C4 4160726
+                c4s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160726') {
+                        c4s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c4s = c4s.sort();
+                if (c4s.length > 0) {
+                  document.getElementById("c4s1").innerHTML = moment(c4s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c4s.length > 1) {
+                    document.getElementById("c4s2").innerHTML = moment(c4s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c4s.length > 2) {
+                      document.getElementById("c4s3").innerHTML = moment(c4s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c4s.length > 3) {
+                        document.getElementById("c4s4").innerHTML = moment(c4s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C5 4160730
+                c5s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160730') {
+                        c5s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c5s = c5s.sort();
+                if (c5s.length > 0) {
+                  document.getElementById("c5s1").innerHTML = moment(c5s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c5s.length > 1) {
+                    document.getElementById("c5s2").innerHTML = moment(c5s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c5s.length > 2) {
+                      document.getElementById("c5s3").innerHTML = moment(c5s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c5s.length > 3) {
+                        document.getElementById("c5s4").innerHTML = moment(c5s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C6 4160734
+                c6s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160734') {
+                        c6s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c6s = c6s.sort();
+                if (c6s.length > 0) {
+                  document.getElementById("c6s1").innerHTML = moment(c6s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c6s.length > 1) {
+                    document.getElementById("c6s2").innerHTML = moment(c6s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c6s.length > 2) {
+                      document.getElementById("c6s3").innerHTML = moment(c6s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c6s.length > 3) {
+                        document.getElementById("c6s4").innerHTML = moment(c6s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C7 4160738
+                c7s = [];
+                for (var i = 0; i < myJson['ResultSet']['Result'].length; i++) {
+                  if (myJson['ResultSet']['Result'][i]['arrival_estimates'] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][i]['arrival_estimates'].length; j++) {
+                      if (myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['stop_id'] == '4160738') {
+                        c7s.push(myJson['ResultSet']['Result'][i]['arrival_estimates'][j]['arrival_at']);
+                      }
+                    }
+                  }
+                }
+                c7s = c7s.sort();
+                if (c7s.length > 0) {
+                  document.getElementById("c7s1").innerHTML = moment(c7s[0],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                  if (c7s.length > 1) {
+                    document.getElementById("c7s2").innerHTML = moment(c7s[1],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                    if (c7s.length > 2) {
+                      document.getElementById("c7s3").innerHTML = moment(c7s[2],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      if (c7s.length > 3) {
+                        document.getElementById("c7s4").innerHTML = moment(c7s[3],"YYYY-MM-DDTHH:mm:ss-Z").fromNow();
+                      }
+                    }
+                  }
+                }
+                // C8
               }
             }
           }
@@ -391,13 +744,15 @@
                 // if (myJson['ResultSet']['Result'][i]['times'] != undefined) {
                   // console.log('w');
                   // console.log(myJson['ResultSet']['Result'][0]['times']);
-                  for (var j = 0; j < myJson['ResultSet']['Result'][0]['times'].length; j++) {
-                    // console.log('n');
-                    if (lastEst < myJson['ResultSet']['Result'][0]['times'][j] && myJson['ResultSet']['Result'][0]['times'][j] < "6:00 AM") {
-                      // console.log(myJson['ResultSet']['Result'][0]['times'][j]);
-                      // console.log(lastEst);
-                      // console.log('yes');
-                      m1e.push(myJson['ResultSet']['Result'][0]['times'][j]);
+                  if (myJson['ResultSet']['Result'][0] != undefined) {
+                    for (var j = 0; j < myJson['ResultSet']['Result'][0]['times'].length; j++) {
+                      // console.log('n');
+                      if (lastEst < myJson['ResultSet']['Result'][0]['times'][j] && myJson['ResultSet']['Result'][0]['times'][j] < "6:00 AM") {
+                        // console.log(myJson['ResultSet']['Result'][0]['times'][j]);
+                        // console.log(lastEst);
+                        // console.log('yes');
+                        m1e.push(myJson['ResultSet']['Result'][0]['times'][j]);
+                      }
                     }
                   }
               //   }
@@ -669,7 +1024,10 @@
       <h1 id="num_running" style="color: #8E44AD; display:inline">busesRunning</h1>
       <h1 style="display:inline"> / </h1>
       <h1 id="num_buses" style="color: #E67E22; display:inline">totalResultsAvailable</h1>
-      <h1 style="display:inline">buses available.</h1>
+      <h1 style="display:inline">buses available.</h1> <br>
+      <h1 style="display:inline">Bus service is </h1>
+      <h1 id="service_strength" style="color: blue; display:inline">service_strength</h1>
+      <h1 style="display:inline"> today.</h1>
       <!-- <h1 style="display:inline">) </h1> -->
       <!-- <h1>Stop Estimates</h1> -->
     </div>
@@ -746,70 +1104,70 @@
             <h2 style="display:inline">M1: </h2>
             <h2 style="display:inline">Student Village 2</h2>
             <h3><i>33 Harry Agganis Way</i></h3>
-            <p id="m1s1">first bus estimate</p>
-            <p id="m1s2">second bus estimate</p>
-            <p id="m1s3">third bus estimate</p>
-            <p id="m1s4">fourth bus estimate</p>
+            <p id="m1s1" class="b1e">first bus estimate</p>
+            <p id="m1s2" class="b2e">second bus estimate</p>
+            <p id="m1s3" class="b3e">third bus estimate</p>
+            <p id="m1s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <div id="idata2">
             <h2 style="display:inline">M2: </h2>
             <h2 style="display:inline">Amory St.</h2>
             <h3><i>Comm. Ave. & Amory St.</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m2s1" class="b1e">first bus estimate</p>
+            <p id="m2s2" class="b2e">second bus estimate</p>
+            <p id="m2s3" class="b3e">third bus estimate</p>
+            <p id="m2s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <div id="idata3">
             <h2 style="display:inline">M3: </h2>
             <h2 style="display:inline">St. Mary's St.</h2>
             <h3><i>Comm. Ave. & St. Mary's St.</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m3s1" class="b1e">first bus estimate</p>
+            <p id="m3s2" class="b2e">second bus estimate</p>
+            <p id="m3s3" class="b3e">third bus estimate</p>
+            <p id="m3s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <div id="idata4">
             <h2 style="display:inline">M4: </h2>
             <h2 style="display:inline">Blandford St.</h2>
             <h3><i>Comm. Ave. & Blandford St.</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m4s1" class="b1e">first bus estimate</p>
+            <p id="m4s2" class="b2e">second bus estimate</p>
+            <p id="m4s3" class="b3e">third bus estimate</p>
+            <p id="m4s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <div id="idata5">
             <h2 style="display:inline">M5: </h2>
             <h2 style="display:inline">Hotel Commonwealth</h2>
             <h3><i>500 Commonwealth Ave.</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m5s1" class="b1e">first bus estimate</p>
+            <p id="m5s2" class="b2e">second bus estimate</p>
+            <p id="m5s3" class="b3e">third bus estimate</p>
+            <p id="m5s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <div id="idata6">
             <h2 style="display:inline">M6: </h2>
             <h2 style="display:inline">Huntington Ave.</h2>
             <h3><i>Mass. Ave. & Huntington Ave.</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m6s1" class="b1e">first bus estimate</p>
+            <p id="m6s2" class="b2e">second bus estimate</p>
+            <p id="m6s3" class="b3e">third bus estimate</p>
+            <p id="m6s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <div id="idata7">
             <h2 style="display:inline">M7: </h2>
             <h2 style="display:inline">710 Albany St.</h2>
             <h3><i>710 Albany Street</i></h3>
-            <p>first bus estimate</p>
-            <p>second bus estimate</p>
-            <p>third bus estimate</p>
-            <p>fourth bus estimate</p>
+            <p id="m7s1" class="b1e">first bus estimate</p>
+            <p id="m7s2" class="b2e">second bus estimate</p>
+            <p id="m7s3" class="b3e">third bus estimate</p>
+            <p id="m7s4" class="b4e">fourth bus estimate</p>
           </div>
 
           <!-- </div> -->
@@ -828,10 +1186,79 @@
 
         <h2 id="out_info">Outbound to Charles River Campus:</h2>
 
-        <div id="out_places" class="estimates" style="padding: 25px 50px 25px 0px;">
+        <div id="out_places" class="estimatesp" style="padding: 25px 50px 25px 0px;">
 
-          <div id="out_places1">
+          <div id="odata1">
+            <h2 style="display:inline">C1: </h2>
+            <h2 style="display:inline">710 Albany St.</h2>
+            <h3><i>710 Albany Street</i></h3>
+            <p id="c1s1" class="b1e">first bus estimate</p>
+            <p id="c1s2" class="b2e">second bus estimate</p>
+            <p id="c1s3" class="b3e">third bus estimate</p>
+            <p id="c1s4" class="b4e">fourth bus estimate</p>
+          </div>
 
+          <div id="odata2">
+            <h2 style="display:inline">C2: </h2>
+            <h2 style="display:inline">Huntington Ave.</h2>
+            <h3><i>Mass. Ave. & Huntington Ave.</i></h3>
+            <p id="c2s1" class="b1e">first bus estimate</p>
+            <p id="c2s2" class="b2e">second bus estimate</p>
+            <p id="c2s3" class="b3e">third bus estimate</p>
+            <p id="c2s4" class="b4e">fourth bus estimate</p>
+          </div>
+
+          <div id="odata3">
+            <h2 style="display:inline">C3: </h2>
+            <h2 style="display:inline">Danielsen Hall</h2>
+            <h3><i>Danielsen Hall, 512 Beacon St.</i></h3>
+            <p id="c3s1" class="b1e">first bus estimate</p>
+            <p id="c3s2" class="b2e">second bus estimate</p>
+            <p id="c3s3" class="b3e">third bus estimate</p>
+            <p id="c3s4" class="b4e">fourth bus estimate</p>
+          </div>
+
+          <div id="odata4">
+            <h2 style="display:inline">C4: </h2>
+            <h2 style="display:inline">Myles Standish</h2>
+            <h3><i>610 Beacon St.</i></h3>
+            <p id="c4s1" class="b1e">first bus estimate</p>
+            <p id="c4s2" class="b2e">second bus estimate</p>
+            <p id="c4s3" class="b3e">third bus estimate</p>
+            <p id="c4s4" class="b4e">fourth bus estimate</p>
+          </div>
+
+          <div id="odata5">
+            <h2 style="display:inline">C5: </h2>
+            <h2 style="display:inline">Silber Way</h2>
+            <h3><i>Comm. Ave. & Silber Way</i></h3>
+            <p id="c5s1" class="b1e">first bus estimate</p>
+            <p id="c5s2" class="b2e">second bus estimate</p>
+            <p id="c5s3" class="b3e">third bus estimate</p>
+            <p id="c5s4" class="b4e">fourth bus estimate</p>
+          </div>
+
+          <div id="odata6">
+            <h2 style="display:inline">C6: </h2>
+            <h2 style="display:inline">Marsh Plaza</h2>
+            <h3><i>735 Comm. Ave.</i></h3>
+            <p id="c6s1" class="b1e">first bus estimate</p>
+            <p id="c6s2" class="b2e">second bus estimate</p>
+            <p id="c6s3" class="b3e">third bus estimate</p>
+            <p id="c6s4" class="b4e">fourth bus estimate</p>
+          </div>
+
+          <div id="odata7">
+            <h2 style="display:inline">C7: </h2>
+            <h2 style="display:inline">College of Fine Arts</h2>
+            <h3><i>855 Comm. Ave.</i></h3>
+            <p id="c7s1" class="b1e">first bus estimate</p>
+            <p id="c7s2" class="b2e">second bus estimate</p>
+            <p id="c7s3" class="b3e">third bus estimate</p>
+            <p id="c7s4" class="b4e">fourth bus estimate</p>
+          </div>
+
+          <div id="odata8">
           </div>
 
         </div>
