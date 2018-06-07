@@ -4,16 +4,6 @@
     <meta charset="UTF-8">
     <title>BU Shuttle</title>
     <style>
-      @font-face {
-        font-family: "Stag-Web-Medium-Italic";
-        src: url("https://www.bu.edu/cdn/fonts/Stag-Web-Medium-Italic/c7c3b71e-e032-4e4f-802b-520c35386c5a-2.eot");
-        src: url("https://www.bu.edu/cdn/fonts/Stag-Web-Medium-Italic/c7c3b71e-e032-4e4f-802b-520c35386c5a-2.eot?") format("embedded-opentype"),
-             url("https://www.bu.edu/cdn/fonts/Stag-Web-Medium-Italic/c7c3b71e-e032-4e4f-802b-520c35386c5a-3.woff") format("woff"),
-             url("https://www.bu.edu/cdn/fonts/Stag-Web-Medium-Italic/c7c3b71e-e032-4e4f-802b-520c35386c5a-1.ttf") format("truetype");
-        font-style: italic;
-        font-weight: normal;
-      }
-      /* h1, h2, h3, h4, h5 { font-family: "Stag-Web-Medium-Italic", sans-serif; font-style: italic; font-weight: normal; } */
       #map {
         height: 100%;
        }
@@ -24,45 +14,24 @@
       }
     </style>
     <!-- Favicon information -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicons/site.webmanifest">
-    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#c2232c">
-    <link rel="shortcut icon" href="assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="../assets/favicons/safari-pinned-tab.svg" color="#c2232c">
+    <link rel="shortcut icon" href="../assets/favicons/favicon.ico">
     <meta name="msapplication-TileColor" content="#d64049">
-    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+    <meta name="msapplication-config" content="../assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#d64049">
     <!-- <script type="text/javascript" src="datetime.min.js"> </script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../style.css"> -->
     <script type="text/javascript" src="moment.js"> </script>
-    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-    body {
-      background: #fbfbfb url(images/bg-wrapper-circles.png) repeat-x 25% 120px;
-    }
-    #wrapper {
-      width:100%;
-      min-width:910px;
-      margin:0 auto;
-      /* background: #fbfbfb url(images/bg-wrapper-circles.png) repeat-x 25% 120px; */
-      position: relative;
-      z-index: 4;
-    }
-    .map #wrapper {
-      background:#fff;
-    }
     #header {
       height:132px;
       background: transparent url(bg-header.gif) repeat-x 0 0;
-      line-height: 1;
-      font: 62.5%/120% Helvetica, arial, verdana, sans-serif;
-      width: 100%;
-      min-width: 910px;
-      margin: 0 auto;
-      /* background: #fbfbfb url(images/bg-wrapper-circles.png) repeat-x 25% 120px; */
-      position: relative;
-      z-index: 4;
+      background-position:left center;padding:8px 0 8px 20px;
     }
     #header .container {
       z-index:2;
@@ -81,12 +50,12 @@
       margin:36px 0 0;
       float:left;
     }
-    /* #masthead h1 a {
+    #masthead h1 a {
       -webkit-transition: opacity .2s ease-in-out;
       -moz-transition: opacity .2s ease-in-out;
       transition: opacity .2s ease-in-out;
       position: relative;
-    } */
+    }
     #masthead p {
       float:left;
       padding:35px 0 0 24px;
@@ -101,16 +70,11 @@
       top:73px;
       right:0;
       height:40px;
-      /* padding-right: 34.3%; */
-      padding-right: 18.05%;
-      margin-top: -10px;
     }
     #nav {
       height:40px;
       overflow:hidden;
-      list-style:none;
-      width: auto;
-      /* padding-right: 70%; */
+      list-style: none;
     }
     #nav ul {
       list-style:none;
@@ -164,7 +128,6 @@
       text-indent:-999em;
       overflow:hidden;
       background: transparent url(bg-parkingservices.png) no-repeat 0 0;
-      margin-left: 30.5%;
     }
     #utility h1 a:hover, #utility h1 a:focus {
       opacity: 0.8;
@@ -177,8 +140,7 @@
       list-style:none;
       text-align:right;
       float:right;
-      margin-top:0px;
-      margin-right: -30.5%;
+      margin-top:-4px;
     }
     #utility li {
       display:inline;
@@ -208,52 +170,40 @@
     #quicksearch {
       display:none;
     }
-    #masthead h1 {
-      padding-left: 72.75%;
-    }
-    .med .container, .med #nav { width:895px; }
-    .med #pnb { width:auto; }
-    .med #masthead { width:562px; }
-    .med.has-utility-nav #nav { width:auto; }
-    .med #utility { width:895px; }
-    .med .page-width { width:837px; }
     </style>
   </head>
   <body>
     <!-- <a href="https://www.bu.edu/thebus/wp-content/themes/flexi-transportation/images/bg-header.gif">download</a> -->
     <!-- official bu shuttle header -->
-    <div id="wrapper" style="height: 713px;">
-      <div id="header" class="signature">
-    		<div class="container">
-      		<div id="masthead">
-            <h1><a href="https://www.bu.edu/thebus"><img src="https://www.bu.edu/thebus/files/signature.png" alt="The Bus - Boston University Shuttle" /></a></h1>
-            <p>Everything About the Boston University Shuttle</p>
-          </div><!--/#masthead-->
+    <div id="header" class="signature">
+  		<div class="container">
+    		<div id="masthead">
+          <h1><a href="https://www.bu.edu/thebus"><img src="https://www.bu.edu/thebus/files/signature.png" alt="The Bus - Boston University Shuttle" /></a></h1>
+          <p>Everything About the Boston University Shuttle</p>
+        </div><!--/#masthead-->
 
-          <form role="search" method="get" action="/phpbin/search/cms.php" id="quicksearch"><fieldset><input type="hidden" name="site" value="https://www.bu.edu/thebus" ><select name="context" id="qs_search_scope"><option value="site">This Site</option><option value="bumc">BU Medical</option><option value="all_of_bu">All BU</option><option value="maps">BU Maps</option><option value="directory">BU Directory</option><option value="google">Google</option></select><input name="q" type="text" aria-label="Search" class="search-field" id="q"  title="Search for:" /><input class="button search-submit" type="submit" name="do_search" value="Search" /></fieldset></form>
-          <div id="pnb" role="navigation">
-          	<ul id="nav" class=" ">
-              <li class="page_item page-item-1206 current_page_item">
-                <a class="level_1 active" href="https://www.bu.edu/thebus/live-view/">map</a>
-              </li>
-              <li class="page_item page-item-1213">
-                <a class="level_1" href="schedules/index.html">stops</a>
-              </li>
-            </ul>
-          </div><!--/#pnb-->
+        <form role="search" method="get" action="/phpbin/search/cms.php" id="quicksearch"><fieldset><input type="hidden" name="site" value="https://www.bu.edu/thebus" ><select name="context" id="qs_search_scope"><option value="site">This Site</option><option value="bumc">BU Medical</option><option value="all_of_bu">All BU</option><option value="maps">BU Maps</option><option value="directory">BU Directory</option><option value="google">Google</option></select><input name="q" type="text" aria-label="Search" class="search-field" id="q"  title="Search for:" /><input class="button search-submit" type="submit" name="do_search" value="Search" /></fieldset></form>
+        <div id="pnb" role="navigation">
+        	<ul id="nav" class=" ">
+            <li class="page_item page-item-1206">
+              <a class="level_1" href="../index.html">Live View</a>
+            </li>
+            <li class="page_item page-item-1213 current_page_item">
+              <a class="level_1 active" href="#">Schedules</a>
+            </li>
+          </ul>
+        </div><!--/#pnb-->
 
-          <div id="utility"><h1><a href="http://www.bu.edu/parking/">Boston University Parking & Transportation Services</a></h1>
-            <ul>
-              <li><a href="http://www.bu.edu/parking/ride-matching/">RideShare</a></li>
-              <li><a href="http://www.bu.edu/bikesafety/">Bike Safety</a></li>
-            </ul>
-          </div>
-  		  </div><!-- /.container -->
-  		</div><!-- /#header -->
+        <div id="utility"><h1><a href="http://www.bu.edu/parking/">Boston University Parking & Transportation Services</a></h1>
+          <ul>
+            <li><a href="http://www.bu.edu/parking/ride-matching/">RideShare</a></li>
+            <li><a href="http://www.bu.edu/bikesafety/">Bike Safety</a></li>
+          </ul>
+        </div>
+		  </div><!-- /.container -->
+		</div><!-- /#header -->
     <!-- end of official bu shuttle header -->
 
-      <div id="map"></div>
-    </div> <!-- #wrapper -->
     <script>
       var liveBus;
       var shape;
@@ -408,8 +358,8 @@
               document.getElementById("service").innerHTML = myJson['service'];
               document.getElementById("service_id").innerHTML = myJson['service_id'];
             }
-            busPosition();
-            reloadBusPosition();
+            // busPosition();
+            // reloadBusPosition();
           }
         );
       };
@@ -1086,8 +1036,8 @@
 //                }
 //              }
 //            }
-            busPosition();
-            reloadBusPosition();
+            // busPosition();
+            // reloadBusPosition();
           }
         );
       };
@@ -1103,93 +1053,75 @@
         busShape[i]["lng"] = parseFloat(busShape[i]["lng"]);
       }
 
-      var map;
-      // setInterval(function() { test() }, 5000);
-      function initMap() {
-        var mapOptions = {
-          zoom: 15,
-          center: {lat: 42.343893, lng: -71.095402},
-          mapTypeId:google.maps.MapTypeId.ROADMAP,
-          styles:[{
-            featureType:"transit",
-            stylers:[
-              {hue:"#3bff00"},
-              {saturation:-65},
-              {visibility:"off"}
-            ]},
-            {featureType:"poi",stylers:[]},
-            {stylers:[
-              {hue:"#0091ff"},
-              {saturation:-100}
-            ]},
-            {featureType:"water",
-            stylers:[
-              {saturation:30},
-              {hue:"#00b2ff"}
-            ]}],
-        }
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        // console.log(liveBus);
-        // console.log(liveBus.length);
-        var busPath = new google.maps.Polyline({
-          path: busShape,
-          geodesic: true,
-          strokeColor: '#FF0000',
-          strokeOpacity: 1.0,
-          strokeWeight: 3
-        });
-        busPath.setMap(map);
-        var image = 'https://www.bu.edu/thebus/wp-content/themes/flexi-transportation/images/map/bus-stop.png';
-        // var image = 'bus_stop.png';
-        // var marker, i;
-        // for (i = 0; i < busShape.length; i++) {
-        //   marker = new google.maps.Marker({
-        //     position: new google.maps.LatLng(busShape[i][0],busShape[i][1]),
-        //     map: map,
-        //     icon: image
-        //   })
-        // }
-        var infowindow = new google.maps.InfoWindow({
-          content: busId[0]
-        });
-        // marker.addListener('click', function() {
-        //   infowindow.open(map, marker);
-        //   busId.splice(1);
-        // });
-      };
-      var buses = [];
-      function busPosition() {
-        // console.log(5);
-        for (var j = 0; j < liveBus.length; j++) {
-          // console.log(5);
-          var stop = liveBus[j];
-          // console.log(stop[0],stop[1]);
-          // var myLatLng = new google.maps.LatLng(stop[0],stop[1]);
-          // console.log(stop[0]);
-          var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(stop[0],stop[1]),
-            // animation: google.maps.Animation.BOUNCE,
-            map: map,
-          });
-          buses.push(marker);
-        };
-        // console.log(buses);
-      };
-      function reloadBusPosition() {
-        // Loop through markers and set map to null for each
-        for (var i = 0; i < buses.length; i++) {
-          buses[i].setMap(null);
-        }
-        // Reset the markers array
-        buses = [];
-        // Call set markers to re-add markers
-        busPosition();
-      }
+      // var map;
+      // // setInterval(function() { test() }, 5000);
+      // function initMap() {
+      //   var mapOptions = {
+      //     zoom: 15,
+      //     center: {lat: 42.343893, lng: -71.095402},
+      //   }
+      //   map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      //   // console.log(liveBus);
+      //   // console.log(liveBus.length);
+      //   var busPath = new google.maps.Polyline({
+      //     path: busShape,
+      //     geodesic: true,
+      //     strokeColor: '#FF0000',
+      //     strokeOpacity: 1.0,
+      //     strokeWeight: 3
+      //   });
+      //   busPath.setMap(map);
+      //   var image = 'https://www.bu.edu/thebus/wp-content/themes/flexi-transportation/images/map/bus-stop.png';
+      //   // var image = 'bus_stop.png';
+      //   // var marker, i;
+      //   // for (i = 0; i < busShape.length; i++) {
+      //   //   marker = new google.maps.Marker({
+      //   //     position: new google.maps.LatLng(busShape[i][0],busShape[i][1]),
+      //   //     map: map,
+      //   //     icon: image
+      //   //   })
+      //   // }
+      //   var infowindow = new google.maps.InfoWindow({
+      //     content: busId[0]
+      //   });
+      //   // marker.addListener('click', function() {
+      //   //   infowindow.open(map, marker);
+      //   //   busId.splice(1);
+      //   // });
+      // };
+      // var buses = [];
+      // function busPosition() {
+      //   // console.log(5);
+      //   for (var j = 0; j < liveBus.length; j++) {
+      //     // console.log(5);
+      //     var stop = liveBus[j];
+      //     // console.log(stop[0],stop[1]);
+      //     // var myLatLng = new google.maps.LatLng(stop[0],stop[1]);
+      //     // console.log(stop[0]);
+      //     var marker = new google.maps.Marker({
+      //       position: new google.maps.LatLng(stop[0],stop[1]),
+      //       // animation: google.maps.Animation.BOUNCE,
+      //       map: map,
+      //     });
+      //     buses.push(marker);
+      //   };
+      //   // console.log(buses);
+      // };
+      // function reloadBusPosition() {
+      //   // Loop through markers and set map to null for each
+      //   for (var i = 0; i < buses.length; i++) {
+      //     buses[i].setMap(null);
+      //   }
+      //   // Reset the markers array
+      //   buses = [];
+      //   // Call set markers to re-add markers
+      //   busPosition();
+      // }
       // busPosition();
     </script>
-    <script async defer
+    <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4aoUYJDMxDfiMOOz7iqoeslQ4E9z9FHQ&callback=initMap">
-    </script>
+    </script> -->
 
     <style>
       .estimates {

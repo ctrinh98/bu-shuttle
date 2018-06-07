@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://www.bu.edu/thebus/about-the-bus/ -->
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" class="has-js"><!--
+	generated 25 seconds ago
+	generated in 0.538 seconds
+	served from batcache in 0.006 seconds
+	expires in 335 seconds
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript" src="./index_files/b19c58809e"></script><script src="./index_files/nr-1071.min.js"></script><script id="twitter-wjs" src="./index_files/widgets.js"></script><script type="text/javascript" async="" src="./index_files/ga.js"></script><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="Copyright" content="Copyright (c) 2018 Boston University">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<title>About The BUS »  The Bus – Boston University Shuttle  | Boston University</title>
+<script type="text/javascript">
+	document.documentElement.className += 'has-js';
+</script>
+
+<link rel="alternate" type="application/rss+xml" title="The Bus – Boston University Shuttle RSS Feed" href="https://www.bu.edu/thebus/feed/">
+<link rel="stylesheet" type="text/css" media="screen" href="../reset.css">
+<link rel="stylesheet" type="text/css" media="print" href="../print.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../style.css">
+
+<link rel="dns-prefetch" href="https://s.w.org/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.bu.edu\/thebus\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.9"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type="text/javascript" src="./index_files/jquery.js"></script>
+<script type="text/javascript" src="./index_files/jquery-migrate.min.js"></script>
+<link rel="https://api.w.org/" href="https://www.bu.edu/thebus/wp-json/">
+<link rel="canonical" href="https://www.bu.edu/thebus/about-the-bus/">
+<link rel="shortlink" href="https://www.bu.edu/thebus/?p=1208">
+<link rel="alternate" type="application/json+oembed" href="https://www.bu.edu/thebus/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bu.edu%2Fthebus%2Fabout-the-bus%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.bu.edu/thebus/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bu.edu%2Fthebus%2Fabout-the-bus%2F&amp;format=xml">
+<meta name="last-updated" content="2017-04-13T13:29:15-04:00">
+
+		<script type="text/javascript">
+			//<![CDATA[
+		function bu_ga_track_pageview(e){var a,t=bu_ga_get_trackers();for(e||(e=void 0),_gaq.push(["_trackPageview",e]),a=0;a<t.length;a++)_gaq.push([t[a]+"._trackPageview",e])}function bu_ga_track_event(e){("undefined"==typeof e.value||null===e.value||isNaN(e.value))&&(e.value=0),"undefined"!=typeof e.delay&&null!==e.delay||(e.delay=0),"undefined"!=typeof e.noninteract&&null!==e.noninteract||(e.noninteract=!0),e.value=parseFloat(e.value);var a,t=bu_ga_get_trackers();for(_gaq.push(["_trackEvent",e.category,e.action,e.label,e.value,e.noninteract]),a=0;a<t.length;a++)_gaq.push([t[a]+"._trackEvent",e.category,e.action,e.label,e.value,e.noninteract]);e.delay&&setTimeout(function(){return!0},100)}function bu_ga_track_social(e){"undefined"!=typeof e.target&&"null"!=typeof e.target||(e.target=void 0),"undefined"!=typeof e.path&&"null"!=typeof e.path||(e.path=void 0);var a,t=bu_ga_get_trackers();for(_gaq.push(["_trackSocial",e.network,e.action,e.target,e.path]),a=0;a<t.length;a++)_gaq.push([t[a]+"._trackSocial",e.network,e.action,e.target,e.path])}function bu_ga_get_trackers(){return"undefined"==typeof buGa||"undefined"==typeof buGa.trackerNames?[]:buGa.trackerNames}function bu_ga_get_tracker(e){if("undefined"==typeof buGa||"undefined"==typeof buGa.trackerIds)return null;if("undefined"==typeof e||"null"==typeof e)return"";var a=buGa.trackerIds;for(var t in a)if(a[t]===e)return"a"===t?"":t;return null}var buGa = {"trackerNames":["b","c"],"trackerIds":{"a":"UA-124985-1","b":"UA-36737920-1","c":"UA-5204430-1"}};
+
+			var _gaq = _gaq || [];
+
+						_gaq.push(['_setAccount', 'UA-124985-1']);
+			_gaq.push(['_trackPageview']);
+						_gaq.push(['b._setAccount', 'UA-36737920-1']);
+			_gaq.push(['b._trackPageview']);
+						/* begin other trackers */
+						_gaq.push(['c._setAccount', 'UA-5204430-1']);
+						_gaq.push(['c._setCookiePath', '/thebus/']);
+						_gaq.push(['c._trackPageview']);
+
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+			//]]>
+		</script>
+
+		<!--[if lt IE 7]>
+<style type="text/css">body {behavior: url(https://www.bu.edu/thebus/wp-content/themes/flexi-framework/css/csshover3.htc);}</style>
+<script src="https://www.bu.edu/thebus/wp-content/themes/flexi-framework/scripts/ie6pngfix.js"></script>
+<script>DD_belatedPNG.fix('img, #quicksearch, *');</script>
+<![endif]-->
+<!--[if lte IE 8]>
+<style type="text/css">body {behavior: url(https://www.bu.edu/thebus/wp-content/themes/flexi-framework/css/csshover3.htc);}</style>
+<link rel="stylesheet" type="text/css" media="screen" href="https://www.bu.edu/thebus/wp-content/themes/flexi-transportation/ie.css" />
+<![endif]-->
+<script type="text/javascript" charset="utf-8" async="" src="./index_files/timeline.ea273fcd1d9c409019d7fd379c944daa.js"></script></head>
+<body class="med_2col_right med default has-utility-nav">
+	<div id="wrapper">
+		<div id="header" class="signature">
+		<div class="container">
+		<div id="masthead">
+    <h1><a href="https://www.bu.edu/thebus"><img src="./index_files/signature.png" alt="The Bus - Boston University Shuttle"></a></h1>
+    <p>Everything About the Boston University Shuttle</p>
+</div><!--/#masthead-->
+
+<form role="search" method="get" action="https://www.bu.edu/phpbin/search/cms.php" id="quicksearch"><fieldset><input type="hidden" name="site" value="https://www.bu.edu/thebus"><select name="context" id="qs_search_scope"><option value="site">This Site</option><option value="bumc">BU Medical</option><option value="all_of_bu">All BU</option><option value="maps">BU Maps</option><option value="directory">BU Directory</option><option value="google">Google</option></select><input name="q" type="text" aria-label="Search" class="search-field" id="q" title="Search for:"><input class="button search-submit" type="submit" name="do_search" value="Search"></fieldset></form>
+<div id="pnb" role="navigation">
+	<ul id="nav" class=" "><li class="page_item page-item-1206">
+<a class="level_1" href="../index.html">Live View</a>
+ </li>
+<li class="page_item page-item-1213">
+<a class="level_1" href="../schedules/index.html">Schedules</a>
+ </li>
+<li class="page_item page-item-1208 current_page_item">
+<a class="level_1 active" href="#">About</a>
+ </li>
+<li class="page_item page-item-1284">
+<a class="level_1" href="https://www.bu.edu/thebus/news/">News</a>
+ </li>
+
+</ul>
+</div><!--/#pnb-->
+
+<div id="utility"><h1><a href="http://www.bu.edu/parking/">Boston University Parking &amp; Transportation Services</a></h1>
+<ul>
+<li><a href="http://www.bu.edu/parking/ride-matching/">RideShare</a></li>
+<li><a href="http://www.bu.edu/bikesafety/">Bike Safety</a></li>
+</ul></div>
+		</div><!-- /.container -->
+		</div><!-- /#header -->
+
+		<div id="content">
+
+		<div class="breadcrumbs-wrapper">
+		<div id="breadcrumbs"><a class="crumb active">About</a></div>		</div> <!-- /.breadcrumbs-wrapper -->
+<div class="container">
+		<div id="col1" class="main">
+		<div class="container">
+						<div class="banner-container"><img src="./index_files/banner.jpg" width="570" height="281" class="banner" alt="The Bus">
+</div>        <div class="content-panel" id="post-1208">
+                        <h1>About The BUS</h1>
+            <h2>Boarding</h2>
+<p>A valid Boston University ID or other acceptable proof of affiliation with the University is required to board The BUS at Agganis Way.</p>
+<p>To speed boarding, patrons should have their ID out and ready for inspection, as only the front doors of the bus will be used during the above-listed times.</p>
+<h2>Capacity Limitations</h2>
+<p>For your safety, all BUS drivers have been directed by Boston University to limit standees per Massachusetts regulation. Should the capacity of a BUS be reached, we ask that you follow your driver’s direction and patiently wait in an orderly queue for the next shuttle. The waiting time for the next BUS should be reasonable, given the frequency of its service.</p>
+<h2>Red Sox Home Games</h2>
+<p>While Boston Red Sox may signal the return of spring or a run for the pennant, it also means increased traffic before and after Fenway Park home games. Users of The BUS should expect significant delays beginning two hours before the start of each home game and approximately one hour after a game’s end (games typically last three hours). While we cannot know the exact extent of the delays in advance, we suggest users add at least one half hour to their schedule. You can obtain a Red Sox schedule by visiting www.redsox.com and selecting the “Schedule” link.</p>
+<p>We will do everything we can to keep the shuttle running on time; however, we have no control over the roadways we share with others.</p>
+<h2>Snow Policy</h2>
+<p><span style="color: #000000;"><strong><u>If CRC Is Closed, Med Campus Open</u></strong></span></p>
+<p>The BU Shuttle will be reduced to 3 buses during peak (20 minute service) and 2 buses during off peak (30 minute service) periods. As a result of poor road conditions, there will be no large, articulated buses running the shuttle route.&nbsp; In fact, road conditions may call for BU wrapped shuttles to be replaced by non-wrapped, coach style buses.&nbsp; When this occurs, any non-wrapped buses will not be visible on the BU Mobile App or the live view of the BUS website.&nbsp; Any delays in BUS service will be posted on the BUS website and tweeted from <a href="http://www.twitter.com/bushuttle">@BUShuttle</a>.</p>
+<p><span style="text-decoration: underline; color: #000000;"><strong>If Both Campuses Close</strong></span></p>
+<p>The BU Shuttle’s Daytime and Late Night Service will be cancelled.</p>
+<p>&nbsp;</p>
+<p>Information regarding emergency closings is available as follows:</p>
+<p>Charles River Campus: Call 617-353-SNOW (7669) or visit the University’s <a href="http://www.bu.edu/">home page</a> or <a href="http://www.bu.edu/today">BU Today</a>, or listen to announcements on the following authorized radio and t.v. stations.</p>
+<table border="0">
+<tbody>
+<tr>
+<td><strong>WBUR </strong></td>
+<td><strong>90.9 FM </strong></td>
+</tr>
+<tr>
+<td><strong>WBZ </strong></td>
+<td><strong>1030 AM</strong></td>
+</tr>
+<tr>
+<td><strong>WBZ-TV</strong></td>
+<td><strong>Channel 4 </strong></td>
+</tr>
+<tr>
+<td><strong>WCVB-TV</strong></td>
+<td><strong>Channel 5</strong></td>
+</tr>
+<tr>
+<td><strong>WHDH-TV</strong></td>
+<td><strong>Channel 7</strong></td>
+</tr>
+<tr>
+<td><strong>WFXT-FOX</strong></td>
+<td><strong>Channel 25</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Medical Campus: Call 617-638-6886 or visit the Medical Campus’s <a href="http://www.bumc.bu.edu/">website</a> and select the “Emergency Disaster Communications” link or listen to announcements on authorized stations.</p>
+<p>Information related to city-declared snow emergencies is also available at <a href="http://www.cityofboston.gov/snow/">www.cityofboston.gov/snow/</a></p>
+
+
+        </div>
+
+		    		</div><!-- /.container -->
+	</div><!--  /.main -->
+			<div id="col2" class="sub" role="complementary">
+
+					<div id="sidebar2">
+			<div class="widget widget_text" id="text-3"><h2 class="widgettitle">Take us with you.</h2>			<div class="textwidget"><p>Download our BUS schedules and take us with you.</p>
+<ul>
+<li><a href="https://www.bu.edu/thebus/files/2017/09/BUS-Schedules-Saturday-Daytime-Service-FY18.pdf">Saturday Daytime Schedule</a></li>
+<li>
+</li>
+<li><a href="https://www.bu.edu/thebus/files/2017/08/BUS-Schedules-FY2018-Weekday-Fall-Spring-8.28.17.pdf">Fall/Spring Weekday Schedule</a></li>
+<li>
+</li>
+<li><a href="https://www.bu.edu/thebus/files/2018/05/BUS-Schedules-FY2018-Summer.pdf">Summer Weekday Schedule</a></li>
+<li></li>
+<li><a href="https://www.bu.edu/thebus/files/2017/12/BUS-Schedules-FY2018-Late-Night-Fall-Spring-12.15.17.pdf">Fall/Spring Late Night Schedule</a></li>
+<li></li>
+</ul></div>
+		</div><div class="widget widget_bu_text advertise" id="bu-text-3"><div>
+<h2 class="widgettitle">Advertise on the BUS</h2><p><a href="http://www.bu.edu/thebus/advertising-on-the-bus/"><img src="./index_files/bus-advertise.jpg" alt="Advertising on the Bus" style="display: none !important;"></a></p>
+</div>
+</div><div class="widget widget_bu_text advertise" id="bu-text-4"><div>
+<p><a href="http://www.bu.edu/thebus/contact-us/">Contact Us</a> </p>
+</div>
+</div>			</div>
+
+				</div><!-- /.sub -->
+
+</div><!-- /.container -->
+<div id="footbar1" class="footbar  even_3col" role="complementary">
+	<div class="container">
+	<div class="widget_container footbar_widget1"><div class="widget widget-bu-posts" id="bu-posts-3"><h2 class="widgettitle"><a href="https://www.bu.edu/thebus/news/">What's New</a></h2><div class="post"><h3 class="headline"><a href="https://www.bu.edu/thebus/2018/05/16/no-bus-service-on-memorial-day-may-28th/" rel="bookmark">No BUS Service on Memorial Day, May 28th</a></h3><p class="excerpt">Regular BUS Summer service will resume on Tuesday, May 29.
+
+Have a safe...</p></div>
+</div></div><div class="widget_container footbar_widget2"><div class="widget widget_text" id="text-4"><h2 class="widgettitle">From Twitter</h2>			<div class="textwidget"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 520px; height: 267.5px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px;" data-widget-id="352126361168658433" title="Twitter Timeline" src="./index_files/saved_resource.html"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+		</div></div><div class="widget_container footbar_widget3"><div class="widget widget_links" id="linkcat-3"><h2 class="widgettitle">Also See</h2>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.bu.edu/thebus/advertising-on-the-bus/" title="Learn more about advertising on the BU Shuttle">Advertising on the Bus</a></li>
+<li><a href="http://www.bu.edu/thebus/charter-bus-services/">Charter Bus Services</a></li>
+<li><a href="http://www.bumc.bu.edu/transcomm">Medical Campus Transportation</a></li>
+<li><a href="http://www.bu.edu/parking/" title="Parking &amp; Transportation Website">Parking &amp; Transportation Services</a></li>
+
+	</ul>
+</div></div>
+	</div><!-- /.container -->
+</div><!-- /#footbar -->
+
+    </div><!--/#content-->
+</div><!--/#wrapper-->
+
+<div id="footer" role="contentinfo">
+	<div class="container ">
+    	    	    	<ul>
+<li><a href="http://www.bu.edu/" rel="external">Boston University</a></li><li><a href="http://www.bu.edu/parking/" rel="external">Parking &amp; Transportation Services</a></li><li><a class="internal" href="https://www.bu.edu/thebus/contact-us/">Contact Us</a></li></ul>
+
+		    	<ul>
+			<li><div class="bu_switch_version"><a rel="nofollow" href="https://www.bu.edu/thebus/about-the-bus/?wantsMobile=true">Mobile Version</a></div></li>    		    	</ul>
+			</div><!--/.container-->
+</div><!--/#footer-->
+
+
+<script type="text/javascript" src="./index_files/wp-embed.min.js"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"b19c58809e","applicationID":"7212547","transactionName":"YV1SNkUDWEQDBRdQDFgXZRBeTV9ZBgMbFxNeSA==","queueTime":0,"applicationTime":13,"atts":"TRpRQA0ZS0o=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./index_files/widget_iframe.c535a95e8a24202b16a5c12c5085d8db.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./index_files/saved_resource(1).html"></iframe></body></html>
