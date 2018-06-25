@@ -14,12 +14,34 @@
     <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#d64049">
     <!-- <script type="text/javascript" src="datetime.min.js"> </script> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Lato|Oxygen|Source+Sans+Pro" rel="stylesheet">
     <script type="text/javascript" src="moment.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/oridomi@1.1.2/oridomi.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
+    <nav>
+      <h1 style="display: inline">BU Shuttle</h1>
+      <a href="#" style="float: right">Mobile</a>
+      <a href="#" style="float: right">About</a> 
+      <a href="#" class="active" style="float: right">Home</a>
+    </nav>
+    <div class='paper'></div>
     <div id="map"></div>
+    <script>var folded = new OriDomi('.paper', {
+  vPanels:         5,     // number of panels when folding left or right (vertically oriented)
+  hPanels:         3,     // number of panels when folding top or bottom
+  speed:           1200,  // folding duration in ms
+  ripple:          2,     // backwards ripple effect when animating
+  shadingIntesity: .5,    // lessen the shading effect
+  perspective:     800,   // smaller values exaggerate 3D distortion
+  maxAngle:        100,    // keep the user's folds within a range of -40 to 40 degrees
+  shading:         'soft' // change the shading type
+});
+      folded.accordion(20);
+
+    </script>
     <!-- <div style="overflow: hidden">
       <div class="triangle"></div>
     </div> -->
@@ -41,7 +63,7 @@
       <!-- <h1>Stop Estimates</h1> -->
     </div>
 
-    <div id="data" class="estimates" style="padding: 25px 50px 25px 50px;">
+    <div id="data" class="estimates" style="padding: 25px 50px 50px 50px;">
 
       <div id="data1">
         <h2 id="title" style="display:inline">Bus #1: </h2>
@@ -97,19 +119,11 @@
     <!-- <div style="overflow: hidden">
       <div class="triangle-flip"></div>
     </div> -->
-    <style>
-      .triangle-flip {
-        width: 0;
-        height: 0;
-        margin-right: 0vw;
-        border-left: 100vw solid transparent;
-        border-right: 0vw solid transparent;
-        border-bottom: 100px solid #c2232c;
-      }
-    </style>
 
-    <div id="info2" style="padding: 25px 50px 0px 50px;">
-      <h1>Stop Estimates</h1>
+    <div id="color" style="padding: 5px 5px 5px 25px; box-shadow: 0 4px 10px 0px gray;">
+      <div id="info2">
+        <h1 style="color: white;">Stop Estimates</h1>
+      </div>
     </div>
 
     <div class="section group">
@@ -117,7 +131,7 @@
       <!-- <div id="right"> -->
       <div class="col span_1_of_2">
 
-        <h2 id="in_info" style="padding-left: 50px;">Inbound to Medical Campus:</h2>
+        <h2 id="in_info" style="padding-left: 50px;">Inbound to MC:</h2>
 
         <div id="in_places" class="estimatesp" style="padding: 25px 50px 25px 50px;">
 
@@ -125,7 +139,7 @@
 
           <div id="idata1">
             <h2 style="display:inline">M1: </h2>
-            <h2 style="display:inline">Student Village 2</h2>
+            <h2 style="display:inline">StuVi 2</h2>
             <h3><i>33 Harry Agganis Way</i></h3>
             <p id="m1s1" class="b1e">first bus estimate</p>
             <p id="m1s2" class="b2e">second bus estimate</p>
@@ -165,7 +179,7 @@
 
           <div id="idata5">
             <h2 style="display:inline">M5: </h2>
-            <h2 style="display:inline">Hotel Commonwealth</h2>
+            <h2 style="display:inline">Hotel Comm.</h2>
             <h3><i>500 Commonwealth Ave.</i></h3>
             <p id="m5s1" class="b1e">first bus estimate</p>
             <p id="m5s2" class="b2e">second bus estimate</p>
@@ -175,8 +189,8 @@
 
           <div id="idata6">
             <h2 style="display:inline">M6: </h2>
-            <h2 style="display:inline">Huntington Ave.</h2>
-            <h3><i>Mass. Ave. & Huntington Ave.</i></h3>
+            <h2 style="display:inline">Huntin Ave.</h2>
+            <h3><i>Mass. Ave. & Huntin Ave.</i></h3>
             <p id="m6s1" class="b1e">first bus estimate</p>
             <p id="m6s2" class="b2e">second bus estimate</p>
             <p id="m6s3" class="b3e">third bus estimate</p>
@@ -207,7 +221,7 @@
       <!-- <div id="left"> -->
       <div class="col span_1_of_2">
 
-        <h2 id="out_info">Outbound to Charles River Campus:</h2>
+        <h2 id="out_info">Outbound to CRC:</h2>
 
         <div id="out_places" class="estimatesp" style="padding: 25px 50px 25px 0px;">
 
@@ -273,7 +287,7 @@
 
           <div id="odata7">
             <h2 style="display:inline">C7: </h2>
-            <h2 style="display:inline">College of Fine Arts</h2>
+            <h2 style="display:inline">CFA</h2>
             <h3><i>855 Comm. Ave.</i></h3>
             <p id="c7s1" class="b1e">first bus estimate</p>
             <p id="c7s2" class="b2e">second bus estimate</p>
@@ -292,7 +306,7 @@
 
     <!-- <div class="clear"></div> -->
 
-    <div id="color" style="background-color: #c2232c">
+    <div id="color">
       <p style="color: white; text-align: right; padding-top: 5px; padding-bottom: 5px; padding-right: 25px;">by Christopher Trinh @ ctrinh.com</p>
     </div>
     <script type="text/javascript" src="main.js"></script>
